@@ -5,16 +5,16 @@ using catsApi.Models;
 
 namespace catsApi.Services
 {
-    public class CatsService
+    public class DogsService
     {
-        public IEnumerable<Cat> Get()
+        public IEnumerable<Dog> Get()
         {
-            return FAKEDB.Cats;
+            return FAKEDB.Dogs;
         }
 
-        public Cat GetById(string id)
+        public Dog GetById(string id)
         {
-            Cat found = FAKEDB.Cats.Find(c => c.Id == id);
+            Dog found = FAKEDB.Dogs.Find(d => d.Id == id);
             if (found == null)
             {
                 throw new Exception("Invalid Id");
@@ -22,32 +22,32 @@ namespace catsApi.Services
             return found;
         }
 
-        internal Cat Create(Cat newCat)
+        internal Dog Create(Dog newDog)
         {
-            FAKEDB.Cats.Add(newCat);
-            return newCat;
+            FAKEDB.Dogs.Add(newDog);
+            return newDog;
         }
 
-        internal Cat Edit(Cat catUpdate)
+        internal Dog Edit(Dog dogUpdate)
         {
-            var current = FAKEDB.Cats.Find(c => c.Id == catUpdate.Id);
+            var current = FAKEDB.Dogs.Find(d => d.Id == dogUpdate.Id);
             if (current == null)
             {
                 throw new Exception("Invalid Id");
             }
-            FAKEDB.Cats.Remove(current);
-            FAKEDB.Cats.Add(catUpdate);
-            return catUpdate;
+            FAKEDB.Dogs.Remove(current);
+            FAKEDB.Dogs.Add(dogUpdate);
+            return dogUpdate;
         }
 
         internal String Delete(string id)
         {
-            var current = FAKEDB.Cats.Find(c => c.Id == id);
+            var current = FAKEDB.Dogs.Find(d => d.Id == id);
             if (current == null)
             {
                 throw new Exception("Invalid Id");
             }
-            FAKEDB.Cats.Remove(current);
+            FAKEDB.Dogs.Remove(current);
             return "Successfully Deleted";
         }
     }

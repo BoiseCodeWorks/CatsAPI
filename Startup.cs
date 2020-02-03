@@ -30,6 +30,7 @@ namespace catsApi
 
             //ADD TRANSIENT SERVICES
             services.AddTransient<CatsService>();
+            services.AddTransient<DogsService>();
 
 
 

@@ -9,20 +9,20 @@ namespace catsApi.Controllers
 {
     [ApiController]  //NOTE Notifies compiler this is to be registered as a controller
     [Route("api/[controller]")] //NOTE RoutePath "WeatherForecast"
-    public class CatsController : ControllerBase
+    public class DogsController : ControllerBase
     {
-        private readonly CatsService _cs;
-        public CatsController(CatsService cs) //DEPENDENCY INJECTION
+        private readonly DogsService _ds;
+        public DogsController(DogsService ds) //DEPENDENCY INJECTION
         {
-            _cs = cs;
+            _ds = ds;
         }
 
-        [HttpGet] //NOTE this route is 'api/cats'
-        public ActionResult<IEnumerable<Cat>> GetAll()
+        [HttpGet] //NOTE this route is 'api/dogs'
+        public ActionResult<IEnumerable<Dog>> Get()
         {
             try
             {
-                return Ok(_cs.Get());
+                return Ok(_ds.Get());
             }
             catch (Exception e)
             {
@@ -30,12 +30,12 @@ namespace catsApi.Controllers
             }
         }
 
-        [HttpGet("{catId}")] //NOTE this route is 'api/cats/:id'
-        public ActionResult<Cat> Get(string catId)
+        [HttpGet("{id}")] //NOTE this route is 'api/cats/:id'
+        public ActionResult<Dog> Get(string id)
         {
             try
             {
-                return Ok(_cs.GetById(catId));
+                return Ok(_ds.GetById(id));
             }
             catch (Exception e)
             {
@@ -45,11 +45,11 @@ namespace catsApi.Controllers
 
 
         [HttpPost]
-        public ActionResult<Cat> Create([FromBody] Cat newCat) //NOTE "From the body, create a cat called newCat")
+        public ActionResult<Dog> Create([FromBody] Dog newDog) //NOTE "From the body, create a dog called newDog")
         {
             try
             {
-                return Ok(_cs.Create(newCat));
+                return Ok(_ds.Create(newDog));
             }
             catch (Exception e)
             {
@@ -58,12 +58,12 @@ namespace catsApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<Cat> Edit(string id, [FromBody] Cat catUpdate)
+        public ActionResult<Dog> Edit(string id, [FromBody] Dog update)
         {
             try
             {
-                catUpdate.Id = id;
-                return Ok(_cs.Edit(catUpdate));
+                update.Id = id;
+                return Ok(_ds.Edit(update));
             }
             catch (Exception e)
             {
@@ -76,7 +76,7 @@ namespace catsApi.Controllers
         {
             try
             {
-                return Ok(_cs.Delete(id));
+                return Ok(_ds.Delete(id));
             }
             catch (Exception e)
             {
